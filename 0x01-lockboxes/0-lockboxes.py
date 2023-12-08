@@ -15,7 +15,8 @@ Write a method that determines if all the boxes can be opened.
 
 def canUnlockAll(boxes: list):
     """
-    Returns `True` if all boxes within `boxes` can be opened, else returns `False`.
+    Returns `True` if all boxes within `boxes` can
+    be opened, else returns `False`.
 
     Arguments:
         - `boxes`: A list of lists
