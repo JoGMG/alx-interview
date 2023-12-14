@@ -26,12 +26,14 @@ def minOperations(n):
 
     while text_size < n:
         if n % text_size == 0:
-            # If text_size is a divisor of n, we can copy and paste current `H` characters
+            # If text_size is a divisor of n, we can
+            # copy and paste current `H` characters
             operations += 2
             text_size *= 2
-            current = text_size // 2 # already copied `H` characters
+            current = text_size // 2  # already copied `H` characters
         else:
-            # If text_size is not a divisor of n, we can only paste the already copied `H` characters
+            # If text_size is not a divisor of n, we can
+            # only paste the already copied `H` characters
             operations += 1
             text_size += current
 
