@@ -18,7 +18,7 @@ def minOperations(n):
         - `n`: desired number of `H` characters
     """
 
-    if n <= 1:
+    if n < 1:
         return 0
 
     operations = 0
