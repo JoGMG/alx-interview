@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """
 In a text file, there is a single character `H`. Your text editor
 can execute only two operations in this file: `Copy All` and `Paste`.
@@ -18,7 +19,7 @@ def minOperations(n):
         - `n`: desired number of `H` characters
     """
 
-    if n < 1:
+    if n <= 1:
         return 0
 
     operations = 0
