@@ -57,15 +57,15 @@ def main():
                     status_code = int(status_code)
                     status_counts[status_code] = \
                         status_counts.get(status_code, 0) + 1
-                    # Print stats after every 10 lines
-                    if i % 10 == 0:
-                        print_stats(total_size, status_counts)
 
-            print_stats(total_size, status_counts)
+                # Print stats after every 10 lines
+                if i % 10 == 0:
+                    print_stats(total_size, status_counts)
 
     except KeyboardInterrupt:
-        # Print final stats
-        print_stats(total_size, status_counts)
+        pass  # Handle Ctrl-C
+
+    print_stats(total_size, status_counts)
 
 
 if __name__ == "__main__":
