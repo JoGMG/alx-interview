@@ -19,7 +19,7 @@ print these statistics from the beginning:
         - status codes should be printed in ascending order
 """
 import sys
-
+import signal
 
 total_size = 0
 status_counts = {}
