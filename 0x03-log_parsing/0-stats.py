@@ -23,11 +23,11 @@ import sys
 
 def print_stats(total_size: int, status_counts: dict):
     """
-    Prints the status
+    Prints log statistics, ordered by status code.
 
     Arguments:
-        - `total_size`: size of the status
-        - `status_counts`: count of the status
+        - `total_size`: total size of stat
+        - `status_counts`: number of occurence of stat
     """
     print("File size: {}".format(total_size))
     for status_code in sorted(status_counts):
@@ -36,7 +36,7 @@ def print_stats(total_size: int, status_counts: dict):
 
 def main():
     """
-    Runs the main operations
+    Performs the main operations
     """
     total_size = 0
     status_counts = {}
@@ -44,7 +44,6 @@ def main():
     try:
         for i, line in enumerate(sys.stdin, start=1):
             parts = line.split()
-            # print(parts)
             if len(parts) >= 7:
                 status_code = parts[-2]
                 file_size = int(parts[-1])
