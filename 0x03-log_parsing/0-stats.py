@@ -19,16 +19,19 @@ print these statistics from the beginning:
         - status codes should be printed in ascending order
 """
 import sys
-import signal
 
 
-def print_stats(total_size, status_counts):
+def print_stats(total_size:int, status_counts:dict):
     """
-    Prints the stats
+    Prints the status
+
+    Arguments:
+        - `total_size`: size of the status
+        - `status_counts`: count of the status
     """
-    print(f"File size: {total_size}")
+    print("File size: {}".format(total_size))
     for status_code in sorted(status_counts):
-        print(f"{status_code}: {status_counts[status_code]}")
+        print("{}: {}".format(status_code, status_counts[status_code]))
 
 
 def main():
@@ -41,6 +44,7 @@ def main():
     try:
         for i, line in enumerate(sys.stdin, start=1):
             parts = line.split()
+            # print(parts)
             if len(parts) >= 7:
                 status_code = parts[-2]
                 file_size = int(parts[-1])
@@ -53,10 +57,12 @@ def main():
                     status_code = int(status_code)
                     status_counts[status_code] = \
                         status_counts.get(status_code, 0) + 1
+                    # Print stats after every 10 lines
+                    if i % 10 == 0:
+                        print_stats(total_size, status_counts)
 
-                # Print stats after every 10 lines
-                if i % 10 == 0:
-                    print_stats(total_size, status_counts)
+            print_stats(total_size, status_counts)
+
     except KeyboardInterrupt:
         # Print final stats
         print_stats(total_size, status_counts)
