@@ -58,10 +58,8 @@ def main():
                 if i % 10 == 0:
                     print_stats(total_size, status_counts)
     except KeyboardInterrupt:
-        pass  # Handle Ctrl+C
-
-    # Print final stats
-    print_stats(total_size, status_counts)
+        # Print final stats
+        print_stats(total_size, status_counts)
 
 
 if __name__ == "__main__":
