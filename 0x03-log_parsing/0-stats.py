@@ -21,7 +21,7 @@ print these statistics from the beginning:
 import sys
 
 
-def print_stats(total_size:int, status_counts:dict):
+def print_stats(total_size: int, status_counts: dict):
     """
     Prints the status
 
