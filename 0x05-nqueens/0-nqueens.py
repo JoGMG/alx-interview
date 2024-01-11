@@ -76,4 +76,6 @@ def main():
         result = [[i, j] for i, j in enumerate(solution)]
         print(result)
 
-main()
+
+if __name__ == "__main__":
+    main()
