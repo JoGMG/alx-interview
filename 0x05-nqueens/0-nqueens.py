@@ -61,15 +61,15 @@ def main():
     valid, it prints an error message and exits with status 1.
     """
     if len(sys.argv) != 2:
-        print("Usage: nqueens N")
+        print("Usage: nqueens N\n")
         sys.exit(1)
     try:
         n = int(sys.argv[1])
     except ValueError:
-        print("N must be a number")
+        print("N must be a number\n")
         sys.exit(1)
     if n < 4:
-        print("N must be at least 4")
+        print("N must be at least 4\n")
         sys.exit(1)
     solutions = list(solve(n, 0, [], [], []))
     for solution in solutions:
