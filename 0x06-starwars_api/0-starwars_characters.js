@@ -10,27 +10,27 @@
 const request = require('request');
 const arg = process.argv[2];
 
-function fetchCharacterName(url) {
-    return new Promise((resolve, reject) => {
-        request(url, { json: true }, (error, response, body) => {
-            if (error) {
-                reject(error);
-            } else {
-                resolve(body.name);
-            }
-        });
+function fetchCharacterName (url) {
+  return new Promise((resolve, reject) => {
+    request(url, { json: true }, (error, response, body) => {
+      if (error) {
+        reject(error);
+      } else {
+        resolve(body.name);
+      }
     });
+  });
 }
 
-request(`https://swapi-api.alx-tools.com/api/films/${arg}`, {json: true}, (error, response, body) => {
-    if (error) {
-        return console.log(error);
-    }
+request(`https://swapi-api.alx-tools.com/api/films/${arg}`, { json: true }, (error, response, body) => {
+  if (error) {
+    return console.log(error);
+  }
 
-    const characters = body.characters;
-    const promises = characters.map(fetchCharacterName)
+  const characters = body.characters;
+  const promises = characters.map(fetchCharacterName);
 
-    Promise.all(promises)
-        .then(names => names.forEach(name => console.log(name)))
-        .catch(error => console.log(error));
+  Promise.all(promises)
+    .then(names => names.forEach(name => console.log(name)))
+    .catch(error => console.log(error));
 });
