@@ -20,9 +20,6 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    # Sort coins in descending order
-    coins.sort(reverse=True)
-
     # Initialize a list to store the minimum number of coins needed
     # for each value
     dp = [float('inf')] * (total + 1)
