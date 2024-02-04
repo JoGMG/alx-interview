@@ -17,8 +17,8 @@ number of coins needed to meet a given amount `total`.
 
 
 def makeChange(coins, total):
-    if total < 0:
-        return -1
+    if total <= 0:
+        return 0
 
     # Initialize a list to store the minimum number of coins needed
     # for each value
