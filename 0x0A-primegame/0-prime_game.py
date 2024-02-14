@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """
 Determines the winner of a Prime Game.
+See README for full details.
 """
+
 
 def isWinner(x, nums):
     """
@@ -17,63 +19,38 @@ def isWinner(x, nums):
         be determined, returns None.
     """
 
-    def is_prime(n):
+    def sieve(n):
         """
-        Checks if a number is prime.
+        Generates all primes up to n using the Sieve of Eratosthenes algorithm.
 
-        Arguments:
-            - `n`: The number to check
+        Parameters:
+        n (int): The upper limit for generating prime numbers.
 
         Returns:
-            - `True` if `n` is a prime number, `False` otherwise.
+            - list: A list of all prime numbers up to n.
         """
-        if n < 2:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
+        primes = [True for _ in range(n+1)]
+        p = 2
+        while p * p <= n:
+            if primes[p] is True:
+                for i in range(p * p, n+1, p):
+                    primes[i] = False
+            p += 1
+        return [p for p in range(2, n) if primes[p]]
 
-    def next_prime(n):
-        """
-        Finds the next prime number after `n`.
-
-        Arguments:
-            - `n`: The number to start from
-
-        Returns:
-            - The next prime number after `n`.
-        """
-        while True:
-            n += 1
-            if is_prime(n):
-                return n
-
-    # Initialize scores
+    # Initialize scores for both players
     scores = {"Maria": 0, "Ben": 0}
 
     # Play each round
     for n in nums:
-        # Initialize the set of numbers and the current player
-        numbers = set(range(2, n + 1))
-        current_player = "Maria"
+        # Generate all primes up to and including n
+        primes = sieve(n+1)
 
-        while True:
-            # Find the smallest prime in the set of numbers
-            prime = min(p for p in numbers if is_prime(p))
+        # If the number of primes is odd, Maria wins the round; otherwise,
+        # Ben wins
+        scores["Maria" if len(primes) % 2 == 1 else "Ben"] += 1
 
-            # Remove the prime and its multiples from the set of numbers
-            numbers -= set(range(prime, n + 1, prime))
-
-            # If there are no primes left, the current player loses
-            if not any(is_prime(p) for p in numbers):
-                scores["Ben" if current_player == "Maria" else "Maria"] += 1
-                break
-
-            # Switch to the other player
-            current_player = "Ben" if current_player == "Maria" else "Maria"
-
-    # Determine the winner
+    # Determine the overall winner
     if scores["Maria"] > scores["Ben"]:
         return "Maria"
     elif scores["Maria"] < scores["Ben"]:
